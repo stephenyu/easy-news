@@ -9,6 +9,8 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "noUnusedParameters": true,
     "preserveConstEnums": true,
     "removeComments": false,
