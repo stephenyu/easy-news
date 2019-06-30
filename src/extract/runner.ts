@@ -1,5 +1,7 @@
-import { AudioTarget } from "extract/models/AudioTarget";
+import * as path from "path";
 
+import { AudioTarget } from "extract/models/AudioTarget";
+import { AudioRecordFileWriter } from "extract/models/AudioRecordFileWriter";
 import { AudioTargetBBC } from "extract/audioTargets/AudioTargetBBC";
 import { AudioRecord } from "shared/AudioRecord";
 
@@ -31,9 +33,16 @@ const runner = new Runner();
 
 runner.registerAudioTarget(new AudioTargetBBC());
 
-console.log("Hello?");
 (async () => {
   const results = await runner.startAudioParsing();
-  console.log("Hello?");
-  console.log(results);
+
+  const destination = path.join(
+    process.cwd(),
+    "src",
+    "renderer",
+    "pages",
+    "indexPage.json"
+  );
+
+  await AudioRecordFileWriter.writeFile(destination, results);
 })();
