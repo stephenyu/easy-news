@@ -2,13 +2,8 @@ import React from "react";
 import * as mobx from "mobx";
 import * as mobxReact from "mobx-react";
 
-import { AudioCheckbox } from "audio_checkbox/audio_checkbox";
-
-export type AudioRecord = {
-  id: string;
-  name: string;
-  url: string;
-};
+import { AudioCheckbox } from "renderer/audio_checkbox/audio_checkbox";
+import { AudioRecord } from "shared/AudioRecord";
 
 type AudioPlaylistStoreProperties = {
   audioRecords: Array<AudioRecord>;

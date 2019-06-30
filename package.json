@@ -4,11 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "extract": "NODE_PATH=\"$(pwd)/src:${NODE_PATH:-}\" ts-node -P tsconfig.extract.json src/extract/runner.ts",
     "lint": "prettier {dist,pages}/** --write",
-    "next:dev": "next ./renderer",
-    "next:build": "next build ./renderer",
-    "next:start": "next start ./renderer",
-    "next:export": "next export ./renderer"
+    "next:dev": "NODE_PATH=\"$(pwd)/src:${NODE_PATH:-}\" next ./src/renderer",
+    "next:build": "NODE_PATH=\"$(pwd)/src:${NODE_PATH:-}\" next build ./src/renderer",
+    "next:start": "NODE_PATH=\"$(pwd)/src:${NODE_PATH:-}\" next start ./src/renderer",
+    "next:export": "NODE_PATH=\"$(pwd)/src:${NODE_PATH:-}\" next export ./src/renderer"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
@@ -16,6 +17,7 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@types/cheerio": "^0.22.11",
     "@types/react": "^16.8.22",
     "@types/uuid": "^3.4.4",
     "@zeit/next-typescript": "^1.1.1",

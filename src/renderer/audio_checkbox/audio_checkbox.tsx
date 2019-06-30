@@ -1,6 +1,6 @@
 import uuidv1 from "uuid/v1";
 
-import { AudioRecord } from "audio_playlist/audio_playlist";
+import { AudioRecord } from "shared/AudioRecord";
 
 export interface AudioCheckboxProps {
   audioRecord: AudioRecord;

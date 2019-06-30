@@ -1,9 +1,10 @@
 import React from "react";
 
-import audioRecords from "data/indexPage.json";
+import audioRecords from "./indexPage.json";
 
-import { AudioPlayer } from "audio_player/audio_player";
-import { AudioPlaylist, AudioRecord } from "audio_playlist/audio_playlist";
+import { AudioPlayer } from "renderer/audio_player/audio_player";
+import { AudioPlaylist } from "renderer/audio_playlist/audio_playlist";
+import { AudioRecord } from "shared/AudioRecord";
 
 interface IndexPageProps {
   audioRecords: Array<AudioRecord>;
