@@ -7,17 +7,25 @@ export enum PlayerState {
   Stop
 }
 
+interface SelectedAudioRecords {
+  [key: string]: AudioRecord;
+}
+
 export class AudioPlayerStore {
   audioRecords: AudioRecord[];
 
-  selectedAudioRecords: Map<string, AudioRecord>;
+  @mobx.observable
+  currentlyPlayingIndex: number;
+
+  selectedAudioRecords: SelectedAudioRecords;
 
   @mobx.observable
   playerState: PlayerState;
 
   constructor(audioRecords: Array<AudioRecord>) {
     this.audioRecords = audioRecords;
-    this.selectedAudioRecords = new Map();
+    this.selectedAudioRecords = {};
     this.playerState = PlayerState.Unstarted;
+    this.currentlyPlayingIndex = -1;
   }
 }

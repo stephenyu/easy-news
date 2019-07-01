@@ -11,14 +11,21 @@ export class AudioPlayerPresenter {
   }
 
   selectAudioRecord(store: AudioPlayerStore, audioRecord: AudioRecord) {
-    store.selectedAudioRecords.set(audioRecord.id, audioRecord);
+    store.selectedAudioRecords[audioRecord.id] = audioRecord;
   }
 
   unselectAudioRecord(store: AudioPlayerStore, audioRecord: AudioRecord) {
-    store.selectedAudioRecords.delete(audioRecord.id);
+    delete store.selectedAudioRecords[audioRecord.id];
   }
 
   setPlay(store: AudioPlayerStore) {
     store.playerState = PlayerState.Play;
+  }
+
+  getNextAudioTrack(store: AudioPlayerStore): AudioRecord {
+    const audioRecordIds = Object.keys(store.selectedAudioRecords);
+    return store.selectedAudioRecords[
+      audioRecordIds[store.currentlyPlayingIndex++]
+    ];
   }
 }

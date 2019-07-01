@@ -6,6 +6,8 @@ import {
   AudioPlayerStore,
   PlayerState
 } from "renderer/audio_player/audio_player.store";
+import { AudioRecord } from "shared/AudioRecord";
+import { AudioPlayerPresenter } from "renderer/audio_player/audio_player.presenter";
 
 interface AudioPlayerProps {
   store: AudioPlayerStore;
@@ -13,24 +15,46 @@ interface AudioPlayerProps {
 
 @mobxReact.observer
 export class AudioPlayer extends React.Component<AudioPlayerProps> {
-  audioElementRef: React.Ref<HTMLAudioElement>;
+  audioElementRef: React.RefObject<HTMLAudioElement>;
+
+  presenter = new AudioPlayerPresenter();
+
+  store: AudioPlayerStore;
 
   constructor(props: AudioPlayerProps) {
     super(props);
+    this.store = this.props.store;
     this.audioElementRef = React.createRef();
 
+    this.presenter = new AudioPlayerPresenter();
+  }
+
+  loadAndPlay = (audioElement: HTMLAudioElement, audioRecord: AudioRecord) => {
+    audioElement.src = audioRecord.url;
+
+    audioElement.addEventListener("loadeddata", function playAndRemove() {
+      audioElement.play();
+      audioElement.removeEventListener("loadeddata", playAndRemove, false);
+    });
+  };
+
+  setElementRef = (element: HTMLAudioElement) => {
     const isPlaying = mobx.computed(
-      () => this.props.store.playerState === PlayerState.Play
+      () => this.store.playerState === PlayerState.Play
     );
 
     mobx.observe(isPlaying, change => {
       if (change.newValue === true) {
-        console.log("Time to play!");
+        this.loadAndPlay(element, this.presenter.getNextAudioTrack(this.store));
       }
     });
-  }
+
+    element.addEventListener("ended", () =>
+      this.loadAndPlay(element, this.presenter.getNextAudioTrack(this.store))
+    );
+  };
 
   render() {
-    return <audio controls ref={this.audioElementRef}></audio>;
+    return <audio controls ref={this.setElementRef}></audio>;
   }
 }
