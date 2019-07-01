@@ -45,6 +45,7 @@ export class AudioPlayer extends React.Component<AudioPlayerProps> {
 
     mobx.observe(isPlaying, change => {
       if (change.newValue === true) {
+        console.log(this.store);
         this.loadAndPlay(element, this.presenter.getNextAudioTrack(this.store));
       }
     });

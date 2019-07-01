@@ -3,6 +3,7 @@ import * as path from "path";
 import { AudioTarget } from "extract/models/AudioTarget";
 import { AudioRecordFileWriter } from "extract/models/AudioRecordFileWriter";
 import { AudioTargetBBC } from "extract/audioTargets/AudioTargetBBC";
+import { AudioTargetCBC } from "extract/audioTargets/AudioTargetCBC";
 import { AudioRecord } from "shared/AudioRecord";
 
 class Runner {
@@ -31,7 +32,9 @@ class Runner {
 
 const runner = new Runner();
 
-runner.registerAudioTarget(new AudioTargetBBC());
+runner
+  .registerAudioTarget(new AudioTargetBBC())
+  .registerAudioTarget(new AudioTargetCBC());
 
 (async () => {
   const results = await runner.startAudioParsing();

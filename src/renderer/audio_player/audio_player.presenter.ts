@@ -25,7 +25,7 @@ export class AudioPlayerPresenter {
   getNextAudioTrack(store: AudioPlayerStore): AudioRecord {
     const audioRecordIds = Object.keys(store.selectedAudioRecords);
     return store.selectedAudioRecords[
-      audioRecordIds[store.currentlyPlayingIndex++]
+      audioRecordIds[++store.currentlyPlayingIndex]
     ];
   }
 }
