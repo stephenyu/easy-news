@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "extract": "NODE_PATH=\"$(pwd)/src:${NODE_PATH:-}\" ts-node -P tsconfig.extract.json src/extract/runner.ts",
-    "deploy": "yarn next:build && yarn next:export",
+    "build": "yarn next:build && yarn next:export",
+    "deploy": "yarn netlify deploy --dir src/renderer/out --prod",
     "lint": "prettier src/**/*.tsx --write",
     "next:dev": "NODE_PATH=\"$(pwd)/src:${NODE_PATH:-}\" next ./src/renderer",
     "next:build": "NODE_PATH=\"$(pwd)/src:${NODE_PATH:-}\" next build ./src/renderer",
@@ -27,6 +28,7 @@
     "cheerio": "^1.0.0-rc.3",
     "mobx": "^5.10.1",
     "mobx-react": "^6.1.1",
+    "netlify-cli": "^2.11.23",
     "next": "^8.1.0",
     "puppeteer": "^1.18.1",
     "react": "^16.8.6",
