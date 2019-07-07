@@ -22,6 +22,10 @@ export class AudioPlayerPresenter {
     store.playerState = PlayerState.Play;
   }
 
+  setStop(store: AudioPlayerStore) {
+    store.playerState = PlayerState.Stop;
+  }
+
   getNextAudioTrack(store: AudioPlayerStore): AudioRecord {
     const audioRecordIds = Object.keys(store.selectedAudioRecords);
     return store.selectedAudioRecords[

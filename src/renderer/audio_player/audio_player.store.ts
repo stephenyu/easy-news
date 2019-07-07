@@ -4,6 +4,7 @@ import { AudioRecord } from "shared/AudioRecord";
 export enum PlayerState {
   Unstarted,
   Play,
+  Loading,
   Stop
 }
 
@@ -17,6 +18,7 @@ export class AudioPlayerStore {
   @mobx.observable
   currentlyPlayingIndex: number;
 
+  @mobx.observable
   selectedAudioRecords: SelectedAudioRecords;
 
   @mobx.observable
@@ -26,6 +28,6 @@ export class AudioPlayerStore {
     this.audioRecords = audioRecords;
     this.selectedAudioRecords = {};
     this.playerState = PlayerState.Unstarted;
-    this.currentlyPlayingIndex = -1;
+    this.currentlyPlayingIndex = 0;
   }
 }

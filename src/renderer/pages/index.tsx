@@ -42,6 +42,10 @@ export default class IndexPage extends React.Component<IndexPageProps> {
     this.presenter.setPlay(this.store);
   };
 
+  onPauseClick = () => {
+    this.presenter.setStop(this.store);
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -50,7 +54,6 @@ export default class IndexPage extends React.Component<IndexPageProps> {
           audioRecords={this.store.audioRecords}
           onSelect={this.onSelect}
           onUnselect={this.onUnselect}
-          onPlayClick={this.onPlayClick}
         ></AudioPlaylist>
       </React.Fragment>
     );

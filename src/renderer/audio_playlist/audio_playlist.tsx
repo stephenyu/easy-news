@@ -8,7 +8,6 @@ type AudioPlaylistProps = {
   audioRecords: Array<AudioRecord>;
   onSelect: (audioRecord: AudioRecord) => void;
   onUnselect: (audioRecord: AudioRecord) => void;
-  onPlayClick: () => void;
 };
 
 @mobxReact.observer
@@ -28,9 +27,6 @@ export class AudioPlaylist extends React.Component<AudioPlaylistProps> {
             onUnselect={this.props.onUnselect}
           />
         ))}
-        <button type="button" onClick={this.props.onPlayClick}>
-          Play
-        </button>
       </form>
     );
   }
