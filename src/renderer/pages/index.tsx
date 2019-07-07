@@ -5,6 +5,7 @@ import audioRecords from "./indexPage.json";
 import { AudioPlayer } from "renderer/audio_player/audio_player";
 import { AudioPlaylist } from "renderer/audio_playlist/audio_playlist";
 import { AudioRecord } from "shared/AudioRecord";
+import { AudioControls } from "renderer/audio_controls/audio_controls";
 
 import { AudioPlayerStore } from "renderer/audio_player/audio_player.store";
 import { AudioPlayerPresenter } from "renderer/audio_player/audio_player.presenter";
@@ -55,6 +56,11 @@ export default class IndexPage extends React.Component<IndexPageProps> {
           onSelect={this.onSelect}
           onUnselect={this.onUnselect}
         ></AudioPlaylist>
+        <AudioControls
+          store={this.store}
+          onClickPlay={this.onPlayClick}
+          onClickPause={this.onPauseClick}
+        ></AudioControls>
       </React.Fragment>
     );
   }

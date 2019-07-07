@@ -7,7 +7,7 @@ import {
   PlayerState
 } from "renderer/audio_player/audio_player.store";
 
-export interface AudioButtonProps {
+export interface AudioControls {
   store: AudioPlayerStore;
   onClickPlay?: () => void;
   onClickPause?: () => void;
@@ -26,8 +26,8 @@ function getLabel(store: AudioPlayerStore): string {
   }
 }
 
-export const AudioButton = mobxReact.observer(
-  ({ store, onClickPlay, onClickPause }: AudioButtonProps) => {
+export const AudioControls = mobxReact.observer(
+  ({ store, onClickPlay, onClickPause }: AudioControls) => {
     const label = getLabel(store);
 
     const onClick = () => {

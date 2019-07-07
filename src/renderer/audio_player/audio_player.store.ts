@@ -28,6 +28,6 @@ export class AudioPlayerStore {
     this.audioRecords = audioRecords;
     this.selectedAudioRecords = {};
     this.playerState = PlayerState.Unstarted;
-    this.currentlyPlayingIndex = 0;
+    this.currentlyPlayingIndex = -1;
   }
 }
