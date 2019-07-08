@@ -3,6 +3,6 @@ TARGET_DIRECTORY="./app"
 
 cd $TARGET_DIRECTORY
 yarn install
-yarn export
+yarn extract
 yarn build
 yarn deploy
