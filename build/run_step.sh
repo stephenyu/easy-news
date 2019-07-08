@@ -1,8 +1,8 @@
 #!/bin/bash
-CURRENT_DIRECTORY=`pwd`
-TARGET_DIRECTORY="$CURRENT_DIRECTORY/../"
+TARGET_DIRECTORY="./app"
 
 cd $TARGET_DIRECTORY
 yarn install
+yarn export
 yarn build
 yarn deploy
