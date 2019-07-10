@@ -9,7 +9,9 @@ export class AudioTargetWSJ extends AudioTarget {
 
   async getUrl() {
     return new Promise<string>(async resolve => {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        executablePath: "/usr/bin/chromium-browser"
+      });
       const page = await browser.newPage();
       await page.goto("https://www.wsj.com/podcasts/minute-briefing");
       const bodyHTML = await page.evaluate(() => document.body.innerHTML);

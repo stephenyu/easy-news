@@ -35,8 +35,8 @@ const runner = new Runner();
 
 runner
   .registerAudioTarget(new AudioTargetBBC())
-  .registerAudioTarget(new AudioTargetCBC())
-  .registerAudioTarget(new AudioTargetWSJ());
+  .registerAudioTarget(new AudioTargetWSJ())
+  .registerAudioTarget(new AudioTargetCBC());
 
 (async () => {
   const results = await runner.startAudioParsing();
@@ -48,6 +48,8 @@ runner
     "pages",
     "indexPage.json"
   );
+
+  console.log(results);
 
   await AudioRecordFileWriter.writeFile(destination, results);
 })();
