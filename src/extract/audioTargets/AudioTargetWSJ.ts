@@ -1,25 +1,38 @@
-import * as cheerio from "cheerio";
-import * as puppeteer from "puppeteer";
+import * as Parser from "rss-parser";
 
 import { AudioTarget } from "extract/models/AudioTarget";
+
+interface RSSItem {
+  title: string;
+  enclosure: {
+    url: string;
+  };
+}
+
+interface RSSFeed {
+  items: RSSItem[];
+}
 
 export class AudioTargetWSJ extends AudioTarget {
   public id: string = "wsj";
   public name: string = "Wall Street Journal";
 
-  async getUrl() {
-    return new Promise<string>(async resolve => {
-      const browser = await puppeteer.launch({
-        executablePath: "/usr/bin/chromium-browser"
-      });
-      const page = await browser.newPage();
-      await page.goto("https://www.wsj.com/podcasts/minute-briefing");
-      const bodyHTML = await page.evaluate(() => document.body.innerHTML);
-      await browser.close();
+  extractNewsUrl(feed: RSSFeed) {
+    const firstNewsItem = feed.items.find(
+      ({ title }) =>
+        title.indexOf("News Brief") > -1 || title.indexOf("Morning Brief") > -1
+    );
 
-      const $ = cheerio.load(bodyHTML);
-      const firstAudio = $("audio:first-child");
-      resolve(firstAudio.attr("src"));
-    });
+    if (firstNewsItem === undefined) throw "URL Not Found";
+    else return firstNewsItem.enclosure.url;
+  }
+
+  async getUrl() {
+    const parser = new Parser();
+    const feed = (await parser.parseURL(
+      "https://video-api.wsj.com/podcast/rss/wsj/minute-briefing"
+    )) as RSSFeed;
+
+    return this.extractNewsUrl(feed);
   }
 }
