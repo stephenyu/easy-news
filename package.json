@@ -30,9 +30,9 @@
     "mobx-react": "^6.1.1",
     "netlify-cli": "^2.11.23",
     "next": "^8.1.0",
-    "puppeteer": "^1.18.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "rss-parser": "^3.7.3",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.2",
     "uuid": "^3.3.2"

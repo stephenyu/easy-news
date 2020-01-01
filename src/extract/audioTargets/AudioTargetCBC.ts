@@ -5,6 +5,6 @@ export class AudioTargetCBC extends AudioTarget {
   public name: string = "CBC";
 
   async getUrl() {
-    return Promise.resolve("http://podcast.cbc.ca/mp3/hourlynews.mp3");
+    return Promise.resolve("https://podcast.cbc.ca/mp3/hourlynews.mp3");
   }
 }
