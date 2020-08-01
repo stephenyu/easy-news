@@ -1,11 +1,11 @@
 import * as path from "path";
 
-import { AudioTarget } from "extract/models/AudioTarget";
-import { AudioRecordFileWriter } from "extract/models/AudioRecordFileWriter";
-import { AudioTargetBBC } from "extract/audioTargets/AudioTargetBBC";
-import { AudioTargetWSJ } from "extract/audioTargets/AudioTargetWSJ";
-import { AudioTargetCBC } from "extract/audioTargets/AudioTargetCBC";
-import { AudioRecord } from "shared/AudioRecord";
+import { AudioTarget } from "./models/AudioTarget";
+import { AudioRecordFileWriter } from "./models/AudioRecordFileWriter";
+import { AudioTargetBBC } from "./audioTargets/AudioTargetBBC";
+import { AudioTargetWSJ } from "./audioTargets/AudioTargetWSJ";
+import { AudioTargetCBC } from "./audioTargets/AudioTargetCBC";
+import { AudioRecord } from "types/types";
 
 class Runner {
   private audioTargets: Array<AudioTarget>;
@@ -35,8 +35,8 @@ const runner = new Runner();
 
 runner
   .registerAudioTarget(new AudioTargetBBC())
-  .registerAudioTarget(new AudioTargetCBC())
-  .registerAudioTarget(new AudioTargetWSJ());
+  .registerAudioTarget(new AudioTargetCBC());
+// .registerAudioTarget(new AudioTargetWSJ());
 
 (async () => {
   const results = await runner.startAudioParsing();
@@ -44,12 +44,10 @@ runner
   const destination = path.join(
     process.cwd(),
     "src",
-    "renderer",
-    "pages",
-    "indexPage.json"
+    "web",
+    "artifacts",
+    "news_sources.json"
   );
-
-  console.log(results);
 
   await AudioRecordFileWriter.writeFile(destination, results);
 })();

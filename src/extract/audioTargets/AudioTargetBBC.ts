@@ -1,8 +1,8 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
 
-import { AudioTarget } from "extract/models/AudioTarget";
-import { Response } from "extract/models/Response";
+import { AudioTarget } from "../models/AudioTarget";
+import { Response } from "../models/Response";
 
 export class AudioTargetBBC extends AudioTarget {
   public id: string = "bbc";

@@ -1,4 +1,4 @@
-import { AudioTarget } from "extract/models/AudioTarget";
+import { AudioTarget } from "../models/AudioTarget";
 
 export class AudioTargetCBC extends AudioTarget {
   public id: string = "cbc";

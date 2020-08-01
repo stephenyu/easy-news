@@ -1,6 +1,6 @@
 import * as fs from "fs";
 
-import { AudioRecord } from "shared/AudioRecord";
+import { AudioRecord } from "types/types";
 
 export class AudioRecordFileWriter {
   static async writeFile(

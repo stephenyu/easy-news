@@ -1,6 +1,6 @@
 import React from "react";
 
-import audioRecords from "./indexPage.json";
+/* import audioRecords from "./indexPage.json"; */
 
 import { AudioPlayer } from "renderer/audio_player/audio_player";
 import { AudioPlaylist } from "renderer/audio_playlist/audio_playlist";

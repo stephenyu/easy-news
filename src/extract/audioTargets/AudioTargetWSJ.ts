@@ -1,6 +1,6 @@
 import * as Parser from "rss-parser";
 
-import { AudioTarget } from "extract/models/AudioTarget";
+import { AudioTarget } from "../models/AudioTarget";
 
 interface RSSItem {
   title: string;

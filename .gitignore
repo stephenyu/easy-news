@@ -3,3 +3,4 @@ out
 .next
 renderer/out
 yarn-error.log
+dist
