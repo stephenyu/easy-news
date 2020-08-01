@@ -16,8 +16,8 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Scape
         run: yarn scape
-      - name: Build
-        run: yarn scape
+      - name: Build Prod
+        run: yarn prod
       - name: Netlify Deploy
         uses: jsmrcaga/action-netlify-deploy@v1.0.1
         with:
