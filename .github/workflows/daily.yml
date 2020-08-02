@@ -1,0 +1,30 @@
+name: Daily Deploys
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 0,6,12,18 * * *'
+
+jobs:
+  build:
+    name: Build
+    # This job runs on Linux
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Scape
+        run: yarn scape
+      - name: Build Prod
+        run: yarn prod
+      - name: Netlify Deploy
+        uses: jsmrcaga/action-netlify-deploy@v1.0.1
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_DEPLOY_API }}
+          NETLIFY_SITE_ID: '407293c1-300e-48cc-8d01-f73bc7ae1080'
+          build_directory: 'dist'
+          NETLIFY_DEPLOY_TO_PROD: true
