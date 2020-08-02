@@ -60,7 +60,7 @@ export const AudioPlayer = () => {
   const [currentNews, getNext] = useCurrentNews();
 
   const audioUrl = (currentNews)
-    ? currentNews.url
+    ? currentNews.url.replace('https', 'http')
     : undefined
 
   return <>

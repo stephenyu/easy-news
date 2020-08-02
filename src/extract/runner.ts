@@ -33,10 +33,8 @@ class Runner {
 
 const runner = new Runner();
 
-runner
-  .registerAudioTarget(new AudioTargetBBC())
+runner.registerAudioTarget(new AudioTargetBBC())
   .registerAudioTarget(new AudioTargetCBC());
-// .registerAudioTarget(new AudioTargetWSJ());
 
 (async () => {
   const results = await runner.startAudioParsing();

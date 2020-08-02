@@ -18,13 +18,21 @@ export class AudioTargetWSJ extends AudioTarget {
   public name: string = "Wall Street Journal";
 
   extractNewsUrl(feed: RSSFeed) {
+
+    console.log(feed.items.map(({ title }) => title));
     const firstNewsItem = feed.items.find(
-      ({ title }) =>
-        title.indexOf("News Brief") > -1 || title.indexOf("Morning Brief") > -1
+      ({ title }) => {
+        console.log(title);
+        return title.indexOf("Brief") > -1
+      }
     );
 
-    if (firstNewsItem === undefined) throw "URL Not Found";
-    else return firstNewsItem.enclosure.url;
+    if (firstNewsItem === undefined) {
+      throw "FirstNewsItem Not Found";
+    }
+
+    console.log(firstNewsItem);
+    return firstNewsItem.enclosure.url;
   }
 
   async getUrl() {
